@@ -3008,9 +3008,11 @@ rightViewBackgroundImageFinalScale = _rightViewBackgroundImageFinalScale;
 }
 
 - (void)didHideRightViewCallbacks {
-    [[NSNotificationCenter defaultCenter] postNotificationName:LGSideMenuDidHideRightViewNotification
-                                                        object:self
-                                                      userInfo:@{kLGSideMenuView: self.rightView}];
+    if (self.rightView) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:LGSideMenuDidHideRightViewNotification
+                                                            object:self
+                                                          userInfo:@{kLGSideMenuView: self.rightView}];
+    }
 
     if (self.didHideRightView) {
         self.didHideRightView(self, self.rightView);
